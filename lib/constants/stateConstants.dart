@@ -1,0 +1,1 @@
+enum HeaderState { homeState, expandedTileState }
