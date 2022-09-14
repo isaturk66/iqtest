@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iqtest/algorithms/uihelpers.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iqtest/constants/stateConstants.dart';
-import 'package:iqtest/pages/home.dart';
+import 'package:iqtest/pages/homePage.dart';
 import 'package:iqtest/states/UIState.dart';
 import 'package:provider/provider.dart';
 

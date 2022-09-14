@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iqtest/algorithms/uihelpers.dart';
+import 'package:iqtest/constants/contentConstants.dart';
+import 'package:iqtest/constants/routeConstants.dart';
 import 'package:iqtest/constants/stateConstants.dart';
-import 'package:iqtest/pages/home.dart';
+import 'package:iqtest/pages/homePage.dart';
 import 'package:iqtest/states/UIState.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -30,12 +32,17 @@ class CardBodyTileData {
 
 class ExpandedCardBodyTile extends StatelessWidget {
   const ExpandedCardBodyTile(
-      {Key? key, required this.data, required this.size, required this.uuid})
+      {Key? key,
+      required this.data,
+      required this.size,
+      required this.uuid,
+      required this.parentContext})
       : super(key: key);
 
   final CardBodyTileData data;
   final Size size;
   final uuid;
+  final BuildContext parentContext;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +118,10 @@ class ExpandedCardBodyTile extends StatelessWidget {
           ),
           SizedBox(height: designH(15, context)),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(parentContext)
+                  .pushNamed(testRoute, arguments: IQTEST);
+            },
             child: Container(
               width: designW(200, context),
               height: designW(200, context) / 5,
@@ -166,8 +176,9 @@ class _CardBodyTileState extends State<CardBodyTile> {
     return GestureDetector(
       onTap: () {
         //_controller.forward();
-        SmartDialog.show(builder: (context) {
+        SmartDialog.show(builder: (cont) {
           return ExpandedCardBodyTile(
+              parentContext: context,
               uuid: uuid,
               data: widget.data,
               size: Size(designW(355, context), designH(550, context)));

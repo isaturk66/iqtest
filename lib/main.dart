@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:iqtest/services/service_locator.dart';
 import 'package:iqtest/states/UIState.dart';
 import 'package:provider/provider.dart';
 import './services/router.dart' as router;
 
 void main() {
-  runApp(MultiProvider(
+  setupLocator();
+
+  runApp(  MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UIState()),
       ],
